@@ -66,12 +66,12 @@ RUN curl https://pyenv.run | bash && \
   
 
 # install nvm, nodejs
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash && \
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash && \
     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" && \
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
-    nvm install 20.15.0
+    nvm install 23.8.0
 
-ENV PATH="$PATH:/root/.nvm/versions/node/v20.15.0/bin"
+ENV PATH="$PATH:/root/.nvm/versions/node/v23.8.0/bin"
 
 # install powershell
 # https://learn.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.4
