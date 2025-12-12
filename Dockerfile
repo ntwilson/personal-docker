@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:9.0 AS dotenv
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS dotenv
 
 RUN apt-get update && apt-get install -y \
     apt-transport-https \
@@ -33,6 +33,9 @@ RUN mkdir /gitconfigvolume && \
 
 ENV PATH="$PATH:/usr/bin/git:/root/.dotnet/tools"
 
+# install rust
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
 # install github cli
 # https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-raspberry-pi-os-apt
 RUN mkdir -p -m 755 /etc/apt/keyrings && \
@@ -63,7 +66,7 @@ RUN curl https://pyenv.run | bash && \
     pyenv global 3.12.4 && \
     pipx ensurepath && \
     pipx install pdm
-  
+
 
 # install nvm, nodejs
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash && \
